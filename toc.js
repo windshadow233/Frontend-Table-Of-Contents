@@ -163,5 +163,4 @@ class TableOfContents{
       $('.toc-body').remove();
       $('body').append(html);
   }
-
 }
