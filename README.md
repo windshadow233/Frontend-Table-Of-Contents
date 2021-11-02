@@ -82,6 +82,6 @@
 |bottom|目录距离网页底部的距离(px)|
 |number|bool值,是否为目录编号|
 
-##示例
+## 示例
 
 [我的blog](https://www.fyz666.xyz/)
