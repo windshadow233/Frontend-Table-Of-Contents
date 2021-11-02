@@ -37,7 +37,7 @@
 }
 .toc-ul::-webkit-scrollbar-thumb {
     background-color: #1E90FF;
-    background-image:-webkit-linear-gradient(45deg, rgba(50,205,50) 25%, transparent 25%, transparent 50%, rgba(50,205,50) 50%, rgba(    50,205,50) 75%, transparent 75%, transparent);
+    background-image:-webkit-linear-gradient(45deg, rgba(50,205,50) 25%, transparent 25%, transparent 50%, rgba(50,205,50) 50%, rgba(50,205,50) 75%, transparent 75%, transparent);
 }
 .toc-li-H1,.toc-li-H2,.toc-li-H3,.toc-li-H4,.toc-li-H5,.toc-li-H6{
     list-style: none;
