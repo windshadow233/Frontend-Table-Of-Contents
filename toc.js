@@ -103,6 +103,7 @@ class TableOfContents{
           'height': '30px'
       })
       button.append(button_icon);
+      button.addClass('animated bounceInDown');
       button.css({
           'left': this.config['left'] + 'px',
           'bottom': this.config['bottom'] + 'px',
