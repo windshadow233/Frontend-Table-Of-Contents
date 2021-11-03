@@ -1,6 +1,6 @@
 function scroll(id){
   var top = $('#' + id).offset().top;
-  $('html,body').animate({scrollTop: top - 40},500);
+  $('html,body').animate({scrollTop: Math.floor(top) - 30},500);
 }
 class Title{
   constructor(dom){
@@ -97,14 +97,16 @@ class TableOfContents{
     });
     $(document).on('scroll', function(){
       that.update_percent();
+      that.update_selected();
     });
   }
-  parse_titles(contents){
+  parse_titles(){
     let current_prior = 0;
     let parsed = [];
     let id = 0;
     let number = 0;
-    let titles = contents.find(this.config['titles']);
+    let contents = $(this.config['selector']);
+    let titles = contents.find(this.config.titles);
     for (let title of titles){
       title.id = this.config['id-prefix'] + '-id-' + (id++);
       let current_title = new Title(title);
@@ -139,6 +141,8 @@ class TableOfContents{
       body.removeClass('fadeOutBottomLeft');
       body.addClass('fadeInBottomLeft');
       body.show();
+      this.update_percent();
+      this.update_selected();
     }
   }
   update_percent(){
@@ -149,7 +153,40 @@ class TableOfContents{
     let percentage = Math.min(Math.max(Math.floor($(window).scrollTop() / (contents_total_height - window_height) * 100), 0), 100);
     $('.toc-percent').html(percentage + '%');
   }
-  adjust_selected(){
+  update_selected(){
+    let contents = $(this.config['selector']);
+    let titles = contents.find(this.config.titles);
+    let current_id = 0;
+    let window_pos = $(window).scrollTop();
+    if (window_pos < $(titles[1]).offset().top - 40){
+      current_id = $(titles[0]).attr('id');
+    }
+    else{
+      for (let id = 1; id < titles.length; id++){
+        let title = $(titles[id]);
+        if (window_pos > title.offset().top - 40){
+          current_id = $(titles[id]).attr('id');
+        }
+      }
+    }
+    let ul = $('.toc-ul');
+    let selected = ul.find('a[link-to="' + current_id + '"]');
+    if (selected.length == 0){
+      return;
+    }
+    selected.addClass('selected');
+    let others = $('.toc-ul a').not(selected);
+    others.removeClass('selected');
+    let selected_offset = selected[0].offsetTop;
+    let ul_scroll = ul.scrollTop();
+    let range_top = ul_scroll + 50;
+    let range_bottom = ul_scroll + ul.height() + 20;
+    if (selected_offset < range_top){
+      ul.scrollTop(selected_offset - 50);
+    }
+    if (selected_offset > range_bottom){
+      ul.scrollTop(selected_offset - ul.height() - 20);
+    }
   }
   create_toc_html(parsed){
     let parent_dom = $('<div>', {'class': 'toc-body animated'});
@@ -169,12 +206,10 @@ class TableOfContents{
     return parent_dom;
   }
   init(){
-    let contents = $(this.config['selector']);
-    let parsed = this.parse_titles(contents);
+    let parsed = this.parse_titles();
     let html = this.create_toc_html(parsed);
     this.html = html;
     $('.toc-body').remove();
     $('body').append(html);
-    this.update_percent();
   }
 }
