@@ -195,8 +195,7 @@ class TableOfContents{
     headline.html('<i class="fas fa-stream"></i> ' + this.config['toc-title'] + '<div class="toc-percent">0</div>');
     parent_dom.css({
       'left': this.config['left'] + 50 + 'px',
-      'bottom': this.config['bottom'] + 50 + 'px',
-      'animation-duration': '0.25s'
+      'bottom': this.config['bottom'] + 50 + 'px'
     });
     parent_dom.append(headline);
     for (let title of parsed){
@@ -206,10 +205,17 @@ class TableOfContents{
     return parent_dom;
   }
   init(){
+    let body = $('.toc-body');
+    if (body.length >= 1 && body.hasClass('fadeInBottomLeft')){
+      body.removeClass('fadeInBottomLeft');
+      body.addClass('fadeOutBottomLeft');
+      setTimeout(function(){
+        body.remove();
+      }, 250);
+    }
     let parsed = this.parse_titles();
     let html = this.create_toc_html(parsed);
     this.html = html;
-    $('.toc-body').remove();
     $('body').append(html);
   }
 }
