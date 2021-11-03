@@ -54,7 +54,7 @@
     </article>
 </body>
     <script type="text/javascript">
-        $('document').ready(function(){
+        $(document).ready(function(){
             let toc = new TableOfContents({
                 'selector': '#toc',
                 'titles': 'h1,h2,h3',
