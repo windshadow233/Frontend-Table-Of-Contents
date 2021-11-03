@@ -82,6 +82,22 @@ class TableOfContents{
       'bottom': this.config['bottom'] + 'px',
     })
     $('body').append(button);
+    let that = this;
+    $(document).on('click', '.toc-ul a', function (){
+      let ele = $(this);
+      let link_to = ele.attr('link-to');
+      scroll(link_to);
+      ele.addClass('selected');
+      let others = $('.toc-ul a').not(ele);
+      others.removeClass('selected');
+      that.switch_visible_state();
+    });
+    $(document).on('click', '.toc-btn', function(){
+      that.switch_visible_state();
+    });
+    $(document).on('scroll', function(){
+      that.update_percent();
+    });
   }
   parse_titles(contents){
     let current_prior = 0;
@@ -160,21 +176,5 @@ class TableOfContents{
     $('.toc-body').remove();
     $('body').append(html);
     this.update_percent();
-    let that = this;
-    $(document).on('click', '.toc-ul a', function (){
-      let ele = $(this);
-      let link_to = ele.attr('link-to');
-      scroll(link_to);
-      ele.addClass('selected');
-      let others = $('.toc-ul a').not(ele);
-      others.removeClass('selected');
-      that.switch_visible_state();
-    });
-    $(document).on('click', '.toc-btn', function(){
-      that.switch_visible_state();
-    });
-    $(document).on('scroll', function(){
-      that.update_percent();
-    });
   }
 }
