@@ -98,7 +98,7 @@ class TableOfContents{
       ele.addClass('selected');
       let others = $('.toc-ul a').not(ele);
       others.removeClass('selected');
-      that.switch_visible_state();
+      if ('ontouchstart' in window) that.switch_visible_state();
     });
     $(document).on('click', '.toc-btn', function(){
       that.switch_visible_state();
