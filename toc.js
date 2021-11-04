@@ -96,8 +96,11 @@ class TableOfContents{
       that.switch_visible_state();
     });
     $(document).on('scroll', function(){
-      that.update_percent();
-      that.update_selected();
+      let body = $('.toc-body');
+      if (body.length > 0 && body.is(":visible")){
+        that.update_percent();
+        that.update_selected();
+      }
     });
   }
   parse_titles(){
@@ -130,7 +133,7 @@ class TableOfContents{
   }
   switch_visible_state(){
     let body = $('.toc-body');
-    if (body.hasClass('fadeInBottomLeft')){
+    if (body.is(":visible")){
       body.removeClass('fadeInBottomLeft');
       body.addClass('fadeOutBottomLeft');
       setTimeout(function(){
@@ -180,12 +183,12 @@ class TableOfContents{
     let selected_offset = selected[0].offsetTop;
     let ul_scroll = ul.scrollTop();
     let range_top = ul_scroll + 50;
-    let range_bottom = ul_scroll + ul.height() + 20;
+    let range_bottom = ul_scroll + ul.height() + 15;
     if (selected_offset < range_top){
       ul.scrollTop(selected_offset - 50);
     }
     if (selected_offset > range_bottom){
-      ul.scrollTop(selected_offset - ul.height() - 20);
+      ul.scrollTop(selected_offset - ul.height() - 15);
     }
   }
   create_toc_html(parsed){
@@ -206,8 +209,7 @@ class TableOfContents{
   }
   init(){
     let body = $('.toc-body');
-    if (body.length >= 1 && body.hasClass('fadeInBottomLeft')){
-      body.removeClass('fadeInBottomLeft');
+    if (body.length >= 1){
       body.addClass('fadeOutBottomLeft');
       setTimeout(function(){
         body.remove();
