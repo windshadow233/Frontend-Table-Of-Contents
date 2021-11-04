@@ -72,6 +72,7 @@ class TableOfContents{
     this.config['id-prefix'] = this.config['id-prefix'] || 'toc';
     this.config['left'] = this.config['left'] || 30;
     this.config['bottom'] = this.config['bottom'] || 60;
+    this.config['button-size'] = this.config['button-size'] || 30;
     this.config['number'] = (this.config['number'] == undefined)? true: this.config['number'];
     this.config['show-percentage'] = (this.config['show-percentage'] == undefined)? true: this.config['show-percentage'];
     let button = $('<div>', {
@@ -79,8 +80,8 @@ class TableOfContents{
     });
     let button_icon = $('<i>', {
       'class': 'fas fa-bars',
-      'width': '30px',
-      'height': '30px'
+      'width': this.config['button-size'] + 'px',
+      'height': this.config['button-size'] + 'px'
     })
     button.append(button_icon);
     button.addClass('animated bounceInDown');
