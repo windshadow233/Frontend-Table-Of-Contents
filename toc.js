@@ -238,6 +238,8 @@ class TableOfContents{
     if (is_visible){
       $('.toc-body').addClass('fadeInBottomLeft');
       $('.toc-body').show();
+      this.update_percent();
+      this.update_selected();
     }
   }
 }
