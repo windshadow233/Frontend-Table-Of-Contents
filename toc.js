@@ -67,6 +67,13 @@ class Title{
 class TableOfContents{
   constructor(config){
     this.config = config;
+    this.config['titles'] = this.config['titles'] || 'h1,h2,h3';
+    this.config['toc-title'] = this.config['toc-title'] || '目录';
+    this.config['id-prefix'] = this.config['id-prefix'] || 'toc';
+    this.config['left'] = this.config['left'] || 30;
+    this.config['bottom'] = this.config['bottom'] || 60;
+    this.config['number'] = (this.config['number'] == undefined)? true: this.config['number'];
+    this.config['show-percentage'] = (this.config['show-percentage'] == undefined)? true: this.config['show-percentage'];
     let button = $('<div>', {
       'class': 'toc-btn'
     });
@@ -149,6 +156,7 @@ class TableOfContents{
     }
   }
   update_percent(){
+    if (!this.config['show-percentage']) return;
     let contents = $(this.config['selector']);
     let last_content = $(contents[contents.length - 1]);
     let contents_total_height = last_content.offset().top + last_content.height();
@@ -195,7 +203,10 @@ class TableOfContents{
     let parent_dom = $('<div>', {'class': 'toc-body animated'});
     let headline = $('<div>', {'class': 'toc-headline'});
     let ul_dom = $('<ul>', {'class': 'toc-ul'});
-    headline.html('<i class="fas fa-stream"></i> ' + this.config['toc-title'] + '<div class="toc-percent">0%</div>');
+    let headline_html = '<i class="fas fa-stream"></i> ' + this.config['toc-title'];
+    if (this.config['show-percentage'])
+      headline_html += '<div class="toc-percent">0%</div>'
+    headline.html(headline_html);
     parent_dom.css({
       'left': this.config['left'] + 50 + 'px',
       'bottom': this.config['bottom'] + 50 + 'px'
