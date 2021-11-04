@@ -92,12 +92,8 @@ class TableOfContents{
     $('body').append(button);
     let that = this;
     $(document).on('click', '.toc-ul a', function (){
-      let ele = $(this);
-      let link_to = ele.attr('link-to');
+      let link_to = $(this).attr('link-to');
       scroll(link_to);
-      ele.addClass('selected');
-      let others = $('.toc-ul a').not(ele);
-      others.removeClass('selected');
       if ('ontouchstart' in window) that.switch_visible_state();
     });
     $(document).on('click', '.toc-btn', function(){
