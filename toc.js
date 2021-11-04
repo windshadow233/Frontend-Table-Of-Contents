@@ -163,7 +163,7 @@ class TableOfContents{
     let contents_total_height = last_content.offset().top + last_content.height();
     let window_height = $(window).height();
     let percentage = Math.min(Math.max(Math.floor($(window).scrollTop() / (contents_total_height - window_height) * 100), 0), 100);
-    $('.toc-percent').html(percentage + '%');
+    $('.toc-percentage').attr("percentage", percentage + '%');
   }
   update_selected(){
     let contents = $(this.config['selector']);
@@ -206,7 +206,7 @@ class TableOfContents{
     let ul_dom = $('<ul>', {'class': 'toc-ul'});
     let headline_html = '<i class="fas fa-stream"></i> ' + this.config['toc-title'];
     if (this.config['show-percentage'])
-      headline_html += '<div class="toc-percent">0%</div>'
+      headline_html += '<div class="toc-percentage" percentage="0%"></div>'
     headline.html(headline_html);
     parent_dom.css({
       'left': this.config['left'] + 50 + 'px',
