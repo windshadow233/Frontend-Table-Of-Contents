@@ -158,6 +158,10 @@ class TableOfContents{
     let last_content = $(contents[contents.length - 1]);
     let contents_total_height = last_content.offset().top + last_content.height();
     let window_height = $(window).height();
+    if (contents_total_height <= window_height){
+      $('.toc-percentage').attr("percentage", '100%');
+      return;
+    }
     let percentage = Math.min(Math.max(Math.floor($(window).scrollTop() / (contents_total_height - window_height) * 100), 0), 100);
     $('.toc-percentage').attr("percentage", percentage + '%');
   }
