@@ -183,12 +183,12 @@ class TableOfContents{
     let selected_offset = selected[0].offsetTop;
     let ul_scroll = ul.scrollTop();
     let range_top = ul_scroll + 50;
-    let range_bottom = ul_scroll + ul.height() + 15;
+    let range_bottom = ul_scroll + ul.height() + (35 - selected.height());
     if (selected_offset < range_top){
       ul.scrollTop(selected_offset - 50);
     }
     if (selected_offset > range_bottom){
-      ul.scrollTop(selected_offset - ul.height() - 15);
+      ul.scrollTop(selected_offset - ul.height() - (35 - selected.height()));
     }
   }
   create_toc_html(parsed){
