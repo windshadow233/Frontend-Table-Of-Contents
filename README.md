@@ -16,7 +16,7 @@
 我不会告诉你其实是因为我不会写PHP又懒得学）因此还是打算自己写一下。
 ## 使用方法
 
-此项目依赖于JQuery、animate.css和Font Awesome(5版本)
+此项目依赖于JQuery、animate.css(version 4.1.0)和Font Awesome(version 5+)
 
 ```html
 <!DOCTYPE html>
@@ -73,7 +73,7 @@
 ## 说明
 
 |参数|说明|
-|---|---|
+|:---:|:---:|
 |selector|CSS选择器,选中想要解析标题的元素|
 |titles|选择需要解析的标题tag,以逗号分割,支持h1~h6|
 |id-prefix|此代码会为每一个解析到的标题生成锚点,可能会污染原文档<br>该参数会作为prefix加在锚点的id前面，以避免污染|
