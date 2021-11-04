@@ -209,7 +209,11 @@ class TableOfContents{
   }
   init(){
     let body = $('.toc-body');
+    let is_visible = false;
     if (body.length >= 1){
+      if (body.is(':visible')){
+        is_visible = true;
+      }
       body.addClass('fadeOutBottomLeft');
       setTimeout(function(){
         body.remove();
@@ -219,5 +223,9 @@ class TableOfContents{
     let html = this.create_toc_html(parsed);
     this.html = html;
     $('body').append(html);
+    if (is_visible){
+      $('.toc-body').addClass('fadeInBottomLeft');
+      $('.toc-body').show();
+    }
   }
 }
