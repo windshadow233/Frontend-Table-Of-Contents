@@ -80,8 +80,8 @@
 |toc-title|没什么用,就是显示在最上面的目录标题(默认:'目录')|
 |left|目录距离网页左侧的距离(px)(默认:30)|
 |bottom|目录距离网页底部的距离(px)(默认:60)|
-|number|bool值,是否为目录编号|
-|show-percentage|bool值,是否显示阅读进度|
+|number|bool值,是否为目录编号(默认:true)|
+|show-percentage|bool值,是否显示阅读进度(默认:true)|
 
 ## 示例
 
