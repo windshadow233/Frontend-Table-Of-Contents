@@ -195,7 +195,7 @@ class TableOfContents{
     let parent_dom = $('<div>', {'class': 'toc-body animated'});
     let headline = $('<div>', {'class': 'toc-headline'});
     let ul_dom = $('<ul>', {'class': 'toc-ul'});
-    headline.html('<i class="fas fa-stream"></i> ' + this.config['toc-title'] + '<div class="toc-percent">0</div>');
+    headline.html('<i class="fas fa-stream"></i> ' + this.config['toc-title'] + '<div class="toc-percent">0%</div>');
     parent_dom.css({
       'left': this.config['left'] + 50 + 'px',
       'bottom': this.config['bottom'] + 50 + 'px'
