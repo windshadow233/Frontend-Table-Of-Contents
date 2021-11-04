@@ -170,11 +170,11 @@ class TableOfContents{
     let titles = contents.find(this.config.titles);
     let current_id = 0;
     let window_pos = $(window).scrollTop();
-    if (titles.length == 1 || window_pos < $(titles[1]).offset().top - 40){
+    if (window_pos < $(titles[0]).offset().top - 40){
       current_id = $(titles[0]).attr('id');
     }
     else{
-      for (let id = 1; id < titles.length; id++){
+      for (let id = 0; id < titles.length; id++){
         let title = $(titles[id]);
         if (window_pos > title.offset().top - 40){
           current_id = $(titles[id]).attr('id');
