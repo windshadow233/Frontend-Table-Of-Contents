@@ -170,7 +170,7 @@ class TableOfContents{
     let titles = contents.find(this.config.titles);
     let current_id = 0;
     let window_pos = $(window).scrollTop();
-    let others;
+    let selected, others;
     if (window_pos < $(titles[0]).offset().top - 80){
       others = $('.toc-ul a');
     }
@@ -181,7 +181,7 @@ class TableOfContents{
           current_id = $(titles[id]).attr('id');
         }
       }
-      let selected = $('.toc-ul a[link-to="' + current_id + '"]');
+      selected = $('.toc-ul a[link-to="' + current_id + '"]');
       if (selected.length == 0) return;
       selected.addClass('selected');
       others = $('.toc-ul a').not(selected);
