@@ -102,7 +102,7 @@ class TableOfContents{
     $(document).on('scroll', function(){
       let body = $('.toc-body');
       if (body.length > 0 && body.is(":visible")){
-        that.update_percent();
+        that.update_percentage();
         that.update_selected();
       }
     });
@@ -148,11 +148,11 @@ class TableOfContents{
       body.removeClass('fadeOutBottomLeft');
       body.addClass('fadeInBottomLeft');
       body.show();
-      this.update_percent();
+      this.update_percentage();
       this.update_selected();
     }
   }
-  update_percent(){
+  update_percentage(){
     if (!this.config['show-percentage']) return;
     let contents = $(this.config['selector']);
     let last_content = $(contents[contents.length - 1]);
@@ -162,7 +162,7 @@ class TableOfContents{
       $('.toc-percentage').attr("percentage", '100%');
       return;
     }
-    let percentage = Math.min(Math.max(Math.floor($(window).scrollTop() / (contents_total_height - window_height) * 100), 0), 100);
+    let percentage = Math.min(Math.max(Math.floor(($(window).scrollTop() - contents.offset().top) / (contents_total_height - contents.offset().top - window_height) * 100), 0), 100);
     $('.toc-percentage').attr("percentage", percentage + '%');
   }
   update_selected(){
@@ -236,7 +236,7 @@ class TableOfContents{
     if (is_visible){
       $('.toc-body').addClass('fadeInBottomLeft');
       $('.toc-body').show();
-      this.update_percent();
+      this.update_percentage();
       this.update_selected();
     }
   }
