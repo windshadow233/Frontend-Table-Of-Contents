@@ -171,13 +171,13 @@ class TableOfContents{
     let current_id = 0;
     let window_pos = $(window).scrollTop();
     let others;
-    if (window_pos < $(titles[0]).offset().top - 70){
+    if (window_pos < $(titles[0]).offset().top - 80){
       others = $('.toc-ul a');
     }
     else{
       for (let id = 0; id < titles.length; id++){
         let title = $(titles[id]);
-        if (window_pos > title.offset().top - 70){
+        if (window_pos > title.offset().top - 80){
           current_id = $(titles[id]).attr('id');
         }
       }
