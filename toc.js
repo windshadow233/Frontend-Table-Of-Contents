@@ -171,8 +171,9 @@ class TableOfContents{
     let current_id = 0;
     let window_pos = $(window).scrollTop();
     let selected, others;
+    let ul = $('.toc-ul');
     if (window_pos < $(titles[0]).offset().top - 80){
-      others = $('.toc-ul a');
+      others = ul.find('a');
     }
     else{
       for (let id = 0; id < titles.length; id++){
@@ -181,10 +182,10 @@ class TableOfContents{
           current_id = $(titles[id]).attr('id');
         }
       }
-      selected = $('.toc-ul a[link-to="' + current_id + '"]');
+      selected = ul.find('a[link-to="' + current_id + '"]');
       if (selected.length == 0) return;
       selected.addClass('selected');
-      others = $('.toc-ul a').not(selected);
+      others = ul.find('a').not(selected);
     }
     others.removeClass('selected');
     let selected_offset = selected[0].offsetTop;
