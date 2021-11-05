@@ -188,6 +188,7 @@ class TableOfContents{
       others = ul.find('a').not(selected);
     }
     others.removeClass('selected');
+    if (selected == undefined) return;
     let selected_offset = selected[0].offsetTop;
     let ul_scroll = ul.scrollTop();
     let range_top = ul_scroll + 50;
