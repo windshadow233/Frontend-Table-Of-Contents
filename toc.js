@@ -170,24 +170,22 @@ class TableOfContents{
     let titles = contents.find(this.config.titles);
     let current_id = 0;
     let window_pos = $(window).scrollTop();
-    if (window_pos < $(titles[0]).offset().top - 40){
-      current_id = $(titles[0]).attr('id');
+    let others;
+    if (window_pos < $(titles[0]).offset().top - 70){
+      others = $('.toc-ul a');
     }
     else{
       for (let id = 0; id < titles.length; id++){
         let title = $(titles[id]);
-        if (window_pos > title.offset().top - 40){
+        if (window_pos > title.offset().top - 70){
           current_id = $(titles[id]).attr('id');
         }
       }
+      let selected = $('.toc-ul a[link-to="' + current_id + '"]');
+      if (selected.length == 0) return;
+      selected.addClass('selected');
+      others = $('.toc-ul a').not(selected);
     }
-    let ul = $('.toc-ul');
-    let selected = ul.find('a[link-to="' + current_id + '"]');
-    if (selected.length == 0){
-      return;
-    }
-    selected.addClass('selected');
-    let others = $('.toc-ul a').not(selected);
     others.removeClass('selected');
     let selected_offset = selected[0].offsetTop;
     let ul_scroll = ul.scrollTop();
