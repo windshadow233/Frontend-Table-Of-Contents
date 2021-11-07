@@ -79,7 +79,7 @@ class TableOfContents{
       'class': 'toc-btn'
     });
     let button_icon = $('<i>', {
-      'class': 'fas fa-bars',
+      'class': 'fas fa-list-ul',
       'width': this.config['button-size'] + 'px',
       'height': this.config['button-size'] + 'px'
     })
