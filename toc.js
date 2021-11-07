@@ -233,7 +233,6 @@ class TableOfContents{
     }
     let parsed = this.parse_titles();
     let html = this.create_toc_html(parsed);
-    this.html = html;
     $('body').append(html);
     if (is_visible){
       $('.toc-body').addClass('fadeInBottomLeft');
