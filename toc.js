@@ -138,16 +138,16 @@ class TableOfContents{
   switch_visible_state(){
     let body = $('.toc-body');
     if (body.is(":visible")){
-      body.removeClass('fadeInBottomLeft');
-      body.addClass('fadeOutBottomLeft');
+      body.css({'transform': 'scale(0.001)'});
       setTimeout(function(){
         body.hide();
       }, 250);
     }
     else{
-      body.removeClass('fadeOutBottomLeft');
-      body.addClass('fadeInBottomLeft');
       body.show();
+      setTimeout(function(){
+        body.css({'transform': 'scale(1)'});
+      }, 1);
       this.update_percentage();
       this.update_selected();
     }
