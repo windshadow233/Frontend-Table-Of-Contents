@@ -12,7 +12,6 @@
 .toc-body{
   position:fixed;
   z-index: 1000;
-  animation-duration: 0.5s;
   border-radius: 10px;
   padding: 10px;
   background-color: rgba(255,255,255,0.8);
@@ -21,6 +20,9 @@
   box-shadow: 0 0 15px #666;
   display: none;
   padding-bottom: 15px;
+  transition-duration: 0.25s;
+  transform-origin: 0px 450px;
+  transform': scale(0.001);
 }
 .toc-ul{
   height: 90%;
@@ -65,7 +67,7 @@
 }
 .toc-percentage:before{
   position: absolute;
-  top: 10px;
+  top: 5px;
   right: 10px;
   display: block;
   font-weight: bold;
