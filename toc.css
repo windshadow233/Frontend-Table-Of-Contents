@@ -1,8 +1,8 @@
 .toc-btn{
   position: fixed;
   background-color: #eee;
-  border-radius: 100%;
-  padding: 10px;
+  border-radius: 40%;
+  padding: 15px;
   cursor: pointer;
 }
 .toc-headline{
