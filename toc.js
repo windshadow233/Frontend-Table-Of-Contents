@@ -155,7 +155,10 @@ class TableOfContents{
     else{
       this.show(body);
       this.update_percentage();
-      this.update_selected();
+      let that = this;
+      setTimeout(function(){
+        that.update_selected();
+      }, 150);
     }
   }
   update_percentage(){
