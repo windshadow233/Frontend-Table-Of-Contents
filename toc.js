@@ -135,19 +135,25 @@ class TableOfContents{
 
     return parsed;
   }
+  show(body){
+    body.show();
+    setTimeout(function(){
+      body.css({'transform': 'scale(1)'});
+    }, 1);
+  }
+  hide(body){
+    body.css({'transform': 'scale(0.001)'});
+    setTimeout(function(){
+      body.hide();
+    }, 250);
+  }
   switch_visible_state(){
     let body = $('.toc-body');
     if (body.is(":visible")){
-      body.css({'transform': 'scale(0.001)'});
-      setTimeout(function(){
-        body.hide();
-      }, 250);
+      this.hide(body);
     }
     else{
-      body.show();
-      setTimeout(function(){
-        body.css({'transform': 'scale(1)'});
-      }, 1);
+      this.show(body);
       this.update_percentage();
       this.update_selected();
     }
@@ -201,7 +207,7 @@ class TableOfContents{
     }
   }
   create_toc_html(parsed){
-    let parent_dom = $('<div>', {'class': 'toc-body animated'});
+    let parent_dom = $('<div>', {'class': 'toc-body'});
     let headline = $('<div>', {'class': 'toc-headline'});
     let ul_dom = $('<ul>', {'class': 'toc-ul'});
     let headline_html = '<i class="fas fa-stream"></i> ' + this.config['toc-title'];
@@ -210,7 +216,8 @@ class TableOfContents{
     headline.html(headline_html);
     parent_dom.css({
       'left': this.config['left'] + 50 + 'px',
-      'bottom': this.config['bottom'] + 50 + 'px'
+      'bottom': this.config['bottom'] + 50 + 'px',
+      'transform': 'scale(0.001)'
     });
     parent_dom.append(headline);
     for (let title of parsed){
@@ -221,22 +228,13 @@ class TableOfContents{
   }
   init(){
     let body = $('.toc-body');
-    let is_visible = false;
-    if (body.length >= 1){
-      if (body.is(':visible')){
-        is_visible = true;
-      }
-      body.addClass('fadeOutBottomLeft');
-      setTimeout(function(){
-        body.remove();
-      }, 250);
-    }
+    let is_visible = body.length >= 1 && body.is(':visible');
+    body.remove();
     let parsed = this.parse_titles();
     let html = this.create_toc_html(parsed);
     $('body').append(html);
     if (is_visible){
-      $('.toc-body').addClass('fadeInBottomLeft');
-      $('.toc-body').show();
+      this.show($('.toc-body'));
       this.update_percentage();
       this.update_selected();
     }
