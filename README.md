@@ -85,4 +85,4 @@
 |show-percentage|bool值，是否以百分比显示阅读进度(默认:true)|
 ## 示例
 
-[我的blog](https://www.fyz666.xyz/)
+[我的blog](https://blog.fyz666.xyz/)
