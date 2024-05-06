@@ -83,6 +83,3 @@
 |button-size|目录按钮的大小(px)(默认:30)|
 |number|bool值，是否为目录编号(默认:true)|
 |show-percentage|bool值，是否以百分比显示阅读进度(默认:true)|
-## 示例
-
-[我的blog](https://blog.fyz666.xyz/)
