@@ -57,7 +57,7 @@
         $(document).ready(function(){
             let toc = new TableOfContents({
                 'selector': '#toc',
-                'titles': 'h1，h2，h3',
+                'titles': 'h1,h2,h3',
                 'id-prefix': 'toc',
                 'toc-title': 'Table Of Contents',
                 'left': 20,
